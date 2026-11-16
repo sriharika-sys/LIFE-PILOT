@@ -1,0 +1,6 @@
+{
+  "name": "LifePilot",
+  "description": "All-in-one personal life-management platform adaptable to every role and lifestyle. Your Life. Your Goals. Your System.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

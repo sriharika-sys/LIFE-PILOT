@@ -1,0 +1,1856 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LifePilot v1.0 — Visual User Manual</title>
+    <style>
+      :root {
+        --teal-700: #0f766e;
+        --teal-600: #0d9488;
+        --teal-500: #14b8a6;
+        --teal-50: #f0fdfa;
+        --teal-100: #ccfbf1;
+        --slate-950: #020617;
+        --slate-900: #0f172a;
+        --slate-800: #1e293b;
+        --slate-700: #334155;
+        --slate-600: #475569;
+        --slate-500: #64748b;
+        --slate-300: #cbd5e1;
+        --slate-200: #e2e8f0;
+        --slate-100: #f1f5f9;
+        --slate-50: #f8fafc;
+        --amber-700: #b45309;
+        --amber-50: #fffbeb;
+        --amber-200: #fde68a;
+        --indigo-700: #4338ca;
+        --indigo-50: #eef2ff;
+        --emerald-700: #047857;
+        --emerald-50: #ecfdf5;
+        --rose-700: #be123c;
+        --rose-50: #fff1f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: var(--slate-900);
+        background: #e2e8f0;
+        line-height: 1.55;
+        font-size: 14px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* Top Screen Action Bar (hidden in print) */
+      .screen-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.96);
+        color: #ffffff;
+        border-bottom: 1px solid var(--slate-800);
+        padding: 10px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        backdrop-filter: blur(8px);
+      }
+
+      .toolbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .toolbar-badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 6px;
+        background: rgba(20, 184, 166, 0.2);
+        color: #5eead4;
+        border: 1px solid rgba(20, 184, 166, 0.4);
+      }
+
+      .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-print {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 10px;
+        background: var(--teal-600);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 16px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(13, 148, 136, 0.35);
+      }
+
+      .btn-print:hover {
+        background: var(--teal-700);
+      }
+
+      .btn-toc {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        border-radius: 10px;
+        background: var(--slate-800);
+        color: #e2e8f0;
+        border: 1px solid var(--slate-700);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 7px 12px;
+      }
+
+      .btn-toc:hover {
+        background: var(--slate-700);
+      }
+
+      /* A4 Page Container on Screen */
+      .manual-shell {
+        max-width: 210mm;
+        margin: 24px auto 48px;
+        padding: 0 12px;
+      }
+
+      .page-sheet {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        padding: 20mm 18mm 20mm;
+        margin-bottom: 22px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-footer-bar {
+        margin-top: 24px;
+        padding-top: 10px;
+        border-top: 1px solid var(--slate-200);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--slate-500);
+      }
+
+      /* Cover Page */
+      .cover-page {
+        min-height: 265mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(165deg, #ffffff 0%, #f0fdfa 55%, #f8fafc 100%);
+        border: 1px solid var(--slate-200);
+      }
+
+      .cover-top-strip {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--teal-600);
+        padding-bottom: 14px;
+      }
+
+      .cover-pill {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal-700);
+        background: var(--teal-100);
+        padding: 5px 12px;
+        border-radius: 999px;
+      }
+
+      .cover-hero {
+        padding: 28px 0 16px;
+      }
+
+      .cover-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .cover-title {
+        margin: 0 0 10px;
+        font-size: 38px;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--slate-950);
+      }
+
+      .cover-subtitle {
+        margin: 0 0 18px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--teal-700);
+      }
+
+      .cover-desc {
+        margin: 0;
+        font-size: 14.5px;
+        color: var(--slate-700);
+        max-width: 560px;
+      }
+
+      .cover-highlights {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 26px 0;
+      }
+
+      .cover-card {
+        background: #ffffff;
+        border: 1px solid var(--slate-200);
+        border-left: 4px solid var(--teal-600);
+        border-radius: 10px;
+        padding: 12px 14px;
+      }
+
+      .cover-card strong {
+        display: block;
+        font-size: 13px;
+        color: var(--slate-900);
+        margin-bottom: 3px;
+      }
+
+      .cover-card span {
+        font-size: 12px;
+        color: var(--slate-600);
+      }
+
+      .cover-meta-box {
+        background: var(--slate-900);
+        color: #f8fafc;
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .cover-meta-item small {
+        display: block;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #94a3b8;
+        margin-bottom: 3px;
+      }
+
+      .cover-meta-item strong {
+        font-size: 12.5px;
+        color: #ffffff;
+      }
+
+      /* Headings & Typography */
+      .chapter-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--teal-700);
+        background: var(--teal-50);
+        border: 1px solid var(--teal-100);
+        padding: 3px 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+      }
+
+      h1.chapter-title {
+        margin: 0 0 8px;
+        font-size: 24px;
+        line-height: 1.2;
+        color: var(--slate-950);
+        border-bottom: 2px solid var(--slate-200);
+        padding-bottom: 10px;
+      }
+
+      .chapter-lead {
+        margin: 0 0 16px;
+        font-size: 13.5px;
+        color: var(--slate-600);
+      }
+
+      h2 {
+        margin: 18px 0 8px;
+        font-size: 16px;
+        color: var(--slate-900);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      h3 {
+        margin: 12px 0 6px;
+        font-size: 14px;
+        color: var(--slate-800);
+      }
+
+      p {
+        margin: 0 0 10px;
+        font-size: 13.5px;
+        color: var(--slate-700);
+      }
+
+      ul, ol {
+        margin: 0 0 12px;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 5px;
+        font-size: 13px;
+        color: var(--slate-700);
+      }
+
+      code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 12px;
+        background: var(--slate-100);
+        border: 1px solid var(--slate-200);
+        padding: 1px 5px;
+        border-radius: 5px;
+        color: var(--slate-800);
+      }
+
+      kbd {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 11.5px;
+        font-weight: 600;
+        background: #ffffff;
+        border: 1px solid var(--slate-300);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        padding: 1px 6px;
+        color: var(--slate-800);
+      }
+
+      /* Table of Contents */
+      .toc-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 18px;
+        margin-top: 12px;
+      }
+
+      .toc-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--slate-200);
+        background: var(--slate-50);
+        text-decoration: none;
+        color: var(--slate-800);
+        font-size: 12.5px;
+        font-weight: 600;
+      }
+
+      .toc-item:hover {
+        border-color: var(--teal-600);
+        background: var(--teal-50);
+      }
+
+      .toc-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: var(--teal-600);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .toc-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .toc-page {
+        font-size: 11px;
+        color: var(--slate-500);
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      /* Step Cards & Grids */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 10px 0 14px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 10px 0 14px;
+      }
+
+      .box {
+        background: var(--slate-50);
+        border: 1px solid var(--slate-200);
+        border-radius: 10px;
+        padding: 12px 14px;
+        break-inside: avoid;
+      }
+
+      .box-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--slate-900);
+        margin-bottom: 5px;
+      }
+
+      .steps-list {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 14px;
+        counter-reset: step-counter;
+      }
+
+      .steps-list li {
+        counter-increment: step-counter;
+        position: relative;
+        padding: 8px 12px 8px 40px;
+        margin-bottom: 7px;
+        background: var(--slate-50);
+        border: 1px solid var(--slate-200);
+        border-radius: 9px;
+        font-size: 12.8px;
+        break-inside: avoid;
+      }
+
+      .steps-list li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 11px;
+        top: 8px;
+        width: 21px;
+        height: 21px;
+        border-radius: 999px;
+        background: var(--teal-600);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Callouts */
+      .callout {
+        border-radius: 10px;
+        padding: 11px 14px;
+        margin: 12px 0;
+        font-size: 12.5px;
+        border: 1px solid;
+        break-inside: avoid;
+      }
+
+      .callout strong.callout-head {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 3px;
+      }
+
+      .callout-tip {
+        background: var(--teal-50);
+        border-color: #99f6e4;
+        color: #134e4a;
+      }
+
+      .callout-warn {
+        background: var(--amber-50);
+        border-color: var(--amber-200);
+        color: #78350f;
+      }
+
+      .callout-info {
+        background: var(--indigo-50);
+        border-color: #c7d2fe;
+        color: #312e81;
+      }
+
+      .callout-danger {
+        background: var(--rose-50);
+        border-color: #fecdd3;
+        color: #881337;
+      }
+
+      /* Tables */
+      table.manual-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0 14px;
+        font-size: 12.5px;
+        break-inside: avoid;
+      }
+
+      table.manual-table th {
+        background: var(--slate-100);
+        color: var(--slate-900);
+        text-align: left;
+        padding: 8px 10px;
+        border: 1px solid var(--slate-200);
+        font-weight: 700;
+      }
+
+      table.manual-table td {
+        padding: 7px 10px;
+        border: 1px solid var(--slate-200);
+        color: var(--slate-700);
+        vertical-align: top;
+      }
+
+      table.manual-table tr:nth-child(even) td {
+        background: #fafcff;
+      }
+
+      /* Diagram Container */
+      .diagram-frame {
+        border: 1px solid var(--slate-200);
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 12px;
+        margin: 12px 0 14px;
+        text-align: center;
+        break-inside: avoid;
+      }
+
+      .diagram-frame svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .diagram-caption {
+        margin-top: 6px;
+        font-size: 11.5px;
+        color: var(--slate-500);
+        font-weight: 600;
+      }
+
+      /* Explicit Screenshot Placeholder (Never Fabricated) */
+      .screenshot-placeholder {
+        border: 2px dashed #94a3b8;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin: 12px 0 14px;
+        break-inside: avoid;
+      }
+
+      .screenshot-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .screenshot-badge {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--slate-700);
+        background: #ffffff;
+        border: 1px solid var(--slate-300);
+        padding: 2px 8px;
+        border-radius: 6px;
+      }
+
+      .screenshot-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--slate-900);
+      }
+
+      .screenshot-notes {
+        font-size: 12px;
+        color: var(--slate-600);
+        margin: 0;
+      }
+
+      /* UI Chip indicator */
+      .ui-btn {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--teal-600);
+        padding: 1px 7px;
+        border-radius: 5px;
+      }
+
+      .ui-pill {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--slate-800);
+        background: var(--slate-100);
+        border: 1px solid var(--slate-300);
+        padding: 1px 7px;
+        border-radius: 5px;
+      }
+
+      /* Responsive Mobile Adjustments */
+      @media screen and (max-width: 720px) {
+        .page-sheet {
+          padding: 20px 16px;
+        }
+        .cover-page {
+          min-height: auto;
+        }
+        .cover-title {
+          font-size: 28px;
+        }
+        .cover-highlights,
+        .cover-meta-box,
+        .toc-grid,
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Print & Save as PDF Styles (A4) */
+      @page {
+        size: A4 portrait;
+        margin: 14mm 12mm 16mm 12mm;
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+          font-size: 12.5px;
+        }
+        .screen-toolbar {
+          display: none !important;
+        }
+        .manual-shell {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+        .page-sheet {
+          box-shadow: none;
+          border-radius: 0;
+          margin: 0;
+          padding: 0;
+          page-break-after: always;
+          break-after: page;
+        }
+        .page-sheet:last-child {
+          page-break-after: auto;
+          break-after: auto;
+        }
+        .cover-page {
+          min-height: 252mm;
+          border: none;
+          padding: 8mm 6mm;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Screen-Only Action Toolbar -->
+    <div class="screen-toolbar" role="region" aria-label="Manual Controls">
+      <div class="toolbar-brand">
+        <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#0d9488" />
+          <circle cx="32" cy="32" r="18" fill="none" stroke="#ffffff" stroke-width="3.5" />
+          <path d="M32 16 L37 29 L48 32 L37 35 L32 48 L27 35 L16 32 L27 29 Z" fill="#ffffff" />
+        </svg>
+        <span>LifePilot v1.0 — Visual User Manual</span>
+        <span class="toolbar-badge">A4 Print-Ready</span>
+      </div>
+      <div class="toolbar-actions">
+        <a href="#toc" class="btn-toc">Table of Contents</a>
+        <button type="button" class="btn-print" onclick="window.print()">
+          Print / Save as PDF
+        </button>
+      </div>
+    </div>
+
+    <main class="manual-shell">
+      <!-- ==================== COVER PAGE ==================== -->
+      <section class="page-sheet cover-page" id="cover">
+        <div>
+          <div class="cover-top-strip">
+            <span class="cover-pill">Academic Project Submission · User Manual</span>
+            <span style="font-size: 12px; font-weight: 700; color: #475569;">Version 1.0 · Offline-First Architecture</span>
+          </div>
+
+          <div class="cover-hero">
+            <div class="cover-logo-row">
+              <svg width="64" height="64" viewBox="0 0 512 512" aria-label="LifePilot Logo">
+                <defs>
+                  <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0f766e" />
+                    <stop offset="100%" stop-color="#0d9488" />
+                  </linearGradient>
+                </defs>
+                <rect width="512" height="512" rx="112" fill="url(#coverGrad)" />
+                <circle cx="256" cy="256" r="144" fill="none" stroke="#ffffff" stroke-width="24" stroke-opacity="0.95" />
+                <path d="M256 128 L296 232 L384 256 L296 280 L256 384 L216 280 L128 256 L216 232 Z" fill="#ffffff" />
+                <circle cx="256" cy="256" r="24" fill="#0d9488" />
+              </svg>
+              <div>
+                <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0f766e;">
+                  Comprehensive Visual Guide
+                </div>
+                <div style="font-size: 13px; color: #475569;">
+                  All-in-One Personal Life-Management Platform
+                </div>
+              </div>
+            </div>
+
+            <h1 class="cover-title">LifePilot User Manual</h1>
+            <p class="cover-subtitle">Your Life. Your Goals. Your System.</p>
+            <p class="cover-desc">
+              A step-by-step illustrated handbook covering every workspace module in LifePilot—from multi-role onboarding, task &amp; calendar execution, habit streaks, and focus sessions to Energy-Aware Planning, Smart Plan B conflict recovery, deterministic local NLP assistance, Recycle Bin recovery, and PWA deployment.
+            </p>
+          </div>
+
+          <div class="cover-highlights">
+            <div class="cover-card">
+              <strong>Multi-Role Life Adaptability</strong>
+              <span>Supports 10 personas (Student, Professional, Farmer, Homemaker, Freelancer, Entrepreneur &amp; more) with adaptive seed templates.</span>
+            </div>
+            <div class="cover-card">
+              <strong>Local-First Browser Storage</strong>
+              <span>Zero external accounts or cloud leaks. Every task, event, habit, goal, note, and trash record persists in <code>localStorage</code>.</span>
+            </div>
+            <div class="cover-card">
+              <strong>Deterministic Smart Planning</strong>
+              <span>Includes Energy Planner, Weekly Life Review, Smart Plan B rescheduler, and Local NLP Assistant with user confirmation.</span>
+            </div>
+            <div class="cover-card">
+              <strong>Synthesized Focus Ambience &amp; PWA</strong>
+              <span>Offline Web Audio soundscapes (including Calm Piano &amp; Serene Instrumental) plus production PWA manifest &amp; Workbox caching.</span>
+            </div>
+          </div>
+
+          <!-- High-level System Map SVG -->
+          <div class="diagram-frame">
+            <svg viewBox="0 0 720 155" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LifePilot Core Modules Overview">
+              <rect x="8" y="10" width="704" height="135" rx="12" fill="#f8fafc" stroke="#cbd5e1" />
+              <!-- Core Execution -->
+              <rect x="24" y="26" width="152" height="102" rx="10" fill="#ffffff" stroke="#0d9488" stroke-width="1.5" />
+              <text x="100" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">CORE EXECUTION</text>
+              <text x="100" y="68" text-anchor="middle" font-size="10.5" fill="#334155">Dashboard (3 Layouts)</text>
+              <text x="100" y="84" text-anchor="middle" font-size="10.5" fill="#334155">Tasks &amp; Subtasks</text>
+              <text x="100" y="100" text-anchor="middle" font-size="10.5" fill="#334155">Calendar &amp; Reminders</text>
+              <text x="100" y="116" text-anchor="middle" font-size="10.5" fill="#334155">Quick Capture &amp; Notes</text>
+              <!-- Growth & Focus -->
+              <rect x="196" y="26" width="152" height="102" rx="10" fill="#ffffff" stroke="#4338ca" stroke-width="1.5" />
+              <text x="272" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">GROWTH &amp; FOCUS</text>
+              <text x="272" y="68" text-anchor="middle" font-size="10.5" fill="#334155">Habits &amp; 7-Day Grid</text>
+              <text x="272" y="84" text-anchor="middle" font-size="10.5" fill="#334155">Strategic Goals &amp; OKRs</text>
+              <text x="272" y="100" text-anchor="middle" font-size="10.5" fill="#334155">Focus Timer &amp; Objective</text>
+              <text x="272" y="116" text-anchor="middle" font-size="10.5" fill="#334155">5 Focus Sound Presets</text>
+              <!-- Smart Tools -->
+              <rect x="368" y="26" width="160" height="102" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.5" />
+              <text x="448" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">LOCAL INTELLIGENCE</text>
+              <text x="448" y="68" text-anchor="middle" font-size="10.5" fill="#334155">Energy-Aware Planner</text>
+              <text x="448" y="84" text-anchor="middle" font-size="10.5" fill="#334155">Smart Plan B Rescheduler</text>
+              <text x="448" y="100" text-anchor="middle" font-size="10.5" fill="#334155">Weekly Review &amp; Analytics</text>
+              <text x="448" y="116" text-anchor="middle" font-size="10.5" fill="#334155">Local NLP &amp; Global Search</text>
+              <!-- Safety & System -->
+              <rect x="548" y="26" width="148" height="102" rx="10" fill="#ffffff" stroke="#047857" stroke-width="1.5" />
+              <text x="622" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">SYSTEM &amp; SAFETY</text>
+              <text x="622" y="68" text-anchor="middle" font-size="10.5" fill="#334155">Unified Recycle Bin</text>
+              <text x="622" y="84" text-anchor="middle" font-size="10.5" fill="#334155">JSON Backup &amp; Restore</text>
+              <text x="622" y="100" text-anchor="middle" font-size="10.5" fill="#334155">Light / Dark Themes</text>
+              <text x="622" y="116" text-anchor="middle" font-size="10.5" fill="#334155">Production PWA Cache</text>
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <div class="cover-meta-box">
+            <div class="cover-meta-item">
+              <small>Application Version</small>
+              <strong>LifePilot v1.0 (React + Vite)</strong>
+            </div>
+            <div class="cover-meta-item">
+              <small>Persistence Model</small>
+              <strong>Browser localStorage (Offline-First)</strong>
+            </div>
+            <div class="cover-meta-item">
+              <small>Document Scope</small>
+              <strong>18 Chapters · Code-Verified</strong>
+            </div>
+          </div>
+          <div class="page-footer-bar">
+            <span>LifePilot v1.0 Visual User Manual</span>
+            <span>Cover Page</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TABLE OF CONTENTS ==================== -->
+      <section class="page-sheet" id="toc">
+        <span class="chapter-tag">Navigation Index</span>
+        <h1 class="chapter-title">Table of Contents</h1>
+        <p class="chapter-lead">
+          Use this table of contents to jump directly to any module guide. All instructions, button names, keyboard shortcuts, and storage mechanisms match the implemented LifePilot source code.
+        </p>
+
+        <div class="toc-grid">
+          <a class="toc-item" href="#ch1">
+            <span class="toc-left"><span class="toc-num">1</span><span>Introduction to LifePilot</span></span>
+            <span class="toc-page">Section 01</span>
+          </a>
+          <a class="toc-item" href="#ch2">
+            <span class="toc-left"><span class="toc-num">2</span><span>Getting Started and Dashboard</span></span>
+            <span class="toc-page">Section 02</span>
+          </a>
+          <a class="toc-item" href="#ch3">
+            <span class="toc-left"><span class="toc-num">3</span><span>Managing Tasks and Subtasks</span></span>
+            <span class="toc-page">Section 03</span>
+          </a>
+          <a class="toc-item" href="#ch4">
+            <span class="toc-left"><span class="toc-num">4</span><span>Calendar, Events and Reminders</span></span>
+            <span class="toc-page">Section 04</span>
+          </a>
+          <a class="toc-item" href="#ch5">
+            <span class="toc-left"><span class="toc-num">5</span><span>Habits and Daily Tracking</span></span>
+            <span class="toc-page">Section 05</span>
+          </a>
+          <a class="toc-item" href="#ch6">
+            <span class="toc-left"><span class="toc-num">6</span><span>Goals and Progress</span></span>
+            <span class="toc-page">Section 06</span>
+          </a>
+          <a class="toc-item" href="#ch7">
+            <span class="toc-left"><span class="toc-num">7</span><span>Focus Center and Focus Sounds</span></span>
+            <span class="toc-page">Section 07</span>
+          </a>
+          <a class="toc-item" href="#ch8">
+            <span class="toc-left"><span class="toc-num">8</span><span>Energy Planner</span></span>
+            <span class="toc-page">Section 08</span>
+          </a>
+          <a class="toc-item" href="#ch9">
+            <span class="toc-left"><span class="toc-num">9</span><span>Weekly Life Review</span></span>
+            <span class="toc-page">Section 09</span>
+          </a>
+          <a class="toc-item" href="#ch10">
+            <span class="toc-left"><span class="toc-num">10</span><span>Smart Plan B</span></span>
+            <span class="toc-page">Section 10</span>
+          </a>
+          <a class="toc-item" href="#ch11">
+            <span class="toc-left"><span class="toc-num">11</span><span>Analytics and Reports</span></span>
+            <span class="toc-page">Section 11</span>
+          </a>
+          <a class="toc-item" href="#ch12">
+            <span class="toc-left"><span class="toc-num">12</span><span>AI Assistant and Global Search</span></span>
+            <span class="toc-page">Section 12</span>
+          </a>
+          <a class="toc-item" href="#ch13">
+            <span class="toc-left"><span class="toc-num">13</span><span>Quick Capture and Notes</span></span>
+            <span class="toc-page">Section 13</span>
+          </a>
+          <a class="toc-item" href="#ch14">
+            <span class="toc-left"><span class="toc-num">14</span><span>Recycle Bin</span></span>
+            <span class="toc-page">Section 14</span>
+          </a>
+          <a class="toc-item" href="#ch15">
+            <span class="toc-left"><span class="toc-num">15</span><span>Settings and Personalization</span></span>
+            <span class="toc-page">Section 15</span>
+          </a>
+          <a class="toc-item" href="#ch16">
+            <span class="toc-left"><span class="toc-num">16</span><span>Data Backup and Restore</span></span>
+            <span class="toc-page">Section 16</span>
+          </a>
+          <a class="toc-item" href="#ch17">
+            <span class="toc-left"><span class="toc-num">17</span><span>PWA Installation and Offline Usage</span></span>
+            <span class="toc-page">Section 17</span>
+          </a>
+          <a class="toc-item" href="#ch18">
+            <span class="toc-left"><span class="toc-num">18</span><span>Tips, Troubleshooting and FAQ</span></span>
+            <span class="toc-page">Section 18</span>
+          </a>
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 18px;">
+          <strong class="callout-head">How to Save This Manual as a Submission-Ready PDF</strong>
+          Click the <strong>Print / Save as PDF</strong> button in the top bar (or press <kbd>Ctrl+P</kbd> / <kbd>⌘P</kbd>), choose <strong>Save as PDF</strong> as the destination, select <strong>A4</strong> paper size, and enable <strong>Background graphics</strong> so colors, callouts, and diagrams render faithfully.
+        </div>
+
+        <div class="callout callout-tip">
+          <strong class="callout-head">Visual Notation Used Throughout This Manual</strong>
+          <ul style="margin-bottom: 0;">
+            <li><span class="ui-btn">Button</span> indicates a primary action button in the interface.</li>
+            <li><span class="ui-pill">Tab / Filter</span> indicates a navigation tab, view switcher, or filter control.</li>
+            <li>Dashed <strong>Screenshot Placeholders</strong> mark exact screens where live browser captures can be inserted if desired for academic binding.</li>
+          </ul>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Table of Contents</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 1 ==================== -->
+      <section class="page-sheet" id="ch1">
+        <span class="chapter-tag">Chapter 1</span>
+        <h1 class="chapter-title">Introduction to LifePilot</h1>
+        <p class="chapter-lead">
+          LifePilot is a local-first personal life-management platform designed to unify tasks, calendar events, daily habits, strategic goals, notes, focus sessions, and analytics in a single browser workspace.
+        </p>
+
+        <h2>1.1 What Makes LifePilot Different</h2>
+        <div class="grid-3">
+          <div class="box">
+            <div class="box-title">Multi-Role Adaptability</div>
+            <p style="margin:0; font-size:12.5px;">Select one or more life roles—such as Student, Working Professional, Farmer, Homemaker, Freelancer, or Custom Role—and tailor templates immediately.</p>
+          </div>
+          <div class="box">
+            <div class="box-title">100% Local-First Privacy</div>
+            <p style="margin:0; font-size:12.5px;">No sign-up wall, passwords, or remote server required. All records persist inside your browser's <code>localStorage</code>.</p>
+          </div>
+          <div class="box">
+            <div class="box-title">Deterministic Intelligence</div>
+            <p style="margin:0; font-size:12.5px;">Smart tools (Energy Planner, Smart Plan B, Local Assistant, Weekly Review) run deterministically on your own records.</p>
+          </div>
+        </div>
+
+        <h2>1.2 Workspace Navigation Overview</h2>
+        <p>LifePilot provides <strong>13 dedicated views</strong> accessible from the left Desktop Sidebar (or the <strong>More</strong> drawer in Mobile Navigation):</p>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Views Included</th>
+              <th>Primary Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Core Workspace</strong></td>
+              <td>Dashboard, Tasks, Calendar, Notes, Habits, Goals</td>
+              <td>Day-to-day execution, scheduling, reference knowledge, streak logging, and long-term milestones.</td>
+            </tr>
+            <tr>
+              <td><strong>Productivity &amp; Growth</strong></td>
+              <td>Focus Center, Energy Planner, Weekly Review, Analytics, AI Assistant, Recycle Bin, Settings</td>
+              <td>Deep-work timers &amp; synthesized audio, energy matching, weekly reflection, charts, local NLP, trash recovery, and JSON backups.</td>
+            </tr>
+            <tr>
+              <td><strong>Global Overlays</strong></td>
+              <td>Global Search (<kbd>Ctrl+K</kbd> / <kbd>⌘K</kbd>), Quick Capture, Setup Wizard, Widget Customizer</td>
+              <td>Instant navigation across every record, rapid inbox capture, persona setup, and dashboard layout tuning.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="diagram-frame">
+          <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LifePilot Local-First Storage Architecture">
+            <rect x="10" y="18" width="160" height="90" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" />
+            <text x="90" y="48" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f766e">React UI &amp; Views</text>
+            <text x="90" y="67" text-anchor="middle" font-size="10" fill="#334155">13 Views + Modals</text>
+            <text x="90" y="83" text-anchor="middle" font-size="10" fill="#334155">Light / Dark Theme</text>
+
+            <line x1="170" y1="63" x2="230" y2="63" stroke="#0d9488" stroke-width="2" />
+            <polygon points="230,58 240,63 230,68" fill="#0d9488" />
+
+            <rect x="242" y="18" width="190" height="90" rx="10" fill="#eef2ff" stroke="#4338ca" stroke-width="1.5" />
+            <text x="337" y="48" text-anchor="middle" font-size="11.5" font-weight="700" fill="#4338ca">LifePilotContext State</text>
+            <text x="337" y="67" text-anchor="middle" font-size="10" fill="#334155">Tasks, Habits, Goals, Events</text>
+            <text x="337" y="83" text-anchor="middle" font-size="10" fill="#334155">Notes, Captures, Trash, Focus</text>
+
+            <line x1="432" y1="63" x2="492" y2="63" stroke="#4338ca" stroke-width="2" />
+            <polygon points="492,58 502,63 492,68" fill="#4338ca" />
+
+            <rect x="504" y="18" width="184" height="90" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5" />
+            <text x="596" y="48" text-anchor="middle" font-size="11.5" font-weight="700" fill="#047857">Browser localStorage</text>
+            <text x="596" y="67" text-anchor="middle" font-size="10" fill="#334155">16 lifepilot_* Storage Keys</text>
+            <text x="596" y="83" text-anchor="middle" font-size="10" fill="#334155">Persists Across Refreshes</text>
+          </svg>
+          <div class="diagram-caption">Figure 1.1 — LifePilot State &amp; Local Storage Data Flow (Zero Cloud Dependency)</div>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 1 · Introduction</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 2 ==================== -->
+      <section class="page-sheet" id="ch2">
+        <span class="chapter-tag">Chapter 2</span>
+        <h1 class="chapter-title">Getting Started and Dashboard</h1>
+        <p class="chapter-lead">
+          On your first visit, LifePilot launches a 3-step Setup Wizard to personalize your display name, active roles, focus interests, and Dashboard Layout Preset.
+        </p>
+
+        <h2>2.1 First-Time Setup Wizard (3 Steps)</h2>
+        <ol class="steps-list">
+          <li><strong>Step 1 — Identity &amp; Multi-Role Selection:</strong> Enter your display name (defaults to <em>Alex</em> if blank) and select one or more roles (e.g., <em>Student</em>, <em>Working Professional</em>, <em>Business Owner</em>, <em>Farmer</em>, <em>Homemaker</em>, <em>Freelancer</em>, <em>Teacher / Educator</em>, <em>Job Seeker</em>, <em>Entrepreneur</em>, or <em>Custom Role</em>).</li>
+          <li><strong>Step 2 — Focus Interests:</strong> Pick areas such as <em>Daily Task Execution</em>, <em>Habit Consistency</em>, <em>Quarterly OKRs</em>, <em>Finance</em>, <em>Wellness</em>, <em>Operations</em>, <em>Learning</em>, or <em>Relationships</em>.</li>
+          <li><strong>Step 3 — Dashboard Layout Preset:</strong> Choose <strong>Balanced Hub</strong>, <strong>Focus Flow</strong>, or <strong>Holistic Overview</strong>, then click <strong>Complete Setup</strong> (or <strong>Skip to App</strong> at any time).</li>
+        </ol>
+
+        <h2>2.2 The Three Dashboard Layout Presets</h2>
+        <p>You can switch presets anytime in <strong>Settings → Dashboard Layout Preset</strong>. Each preset arranges visible widgets differently:</p>
+
+        <div class="diagram-frame">
+          <svg viewBox="0 0 700 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison of Balanced Hub, Focus Flow, and Holistic Overview Dashboard Layouts">
+            <!-- Balanced Hub -->
+            <rect x="10" y="10" width="214" height="165" rx="10" fill="#f8fafc" stroke="#0d9488" stroke-width="1.5" />
+            <text x="117" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f766e">Balanced Hub</text>
+            <rect x="24" y="40" width="186" height="22" rx="5" fill="#ccfbf1" stroke="#0d9488" />
+            <text x="117" y="55" text-anchor="middle" font-size="9.5" font-weight="600" fill="#134e4a">Daily Progress Card</text>
+            <rect x="24" y="70" width="88" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="68" y="94" text-anchor="middle" font-size="9" fill="#334155">Quick Capture</text>
+            <rect x="122" y="70" width="88" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="166" y="94" text-anchor="middle" font-size="9" fill="#334155">Today's Tasks</text>
+            <rect x="24" y="118" width="88" height="42" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="68" y="143" text-anchor="middle" font-size="9" fill="#334155">Habits / Goals</text>
+            <rect x="122" y="118" width="88" height="42" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="166" y="143" text-anchor="middle" font-size="9" fill="#334155">Events</text>
+
+            <!-- Focus Flow -->
+            <rect x="243" y="10" width="214" height="165" rx="10" fill="#f8fafc" stroke="#4338ca" stroke-width="1.5" />
+            <text x="350" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="#4338ca">Focus Flow</text>
+            <rect x="257" y="40" width="186" height="22" rx="5" fill="#e0e7ff" stroke="#4338ca" />
+            <text x="350" y="55" text-anchor="middle" font-size="9.5" font-weight="600" fill="#312e81">Daily Progress Card</text>
+            <rect x="257" y="70" width="108" height="45" rx="5" fill="#ffffff" stroke="#4338ca" />
+            <text x="311" y="96" text-anchor="middle" font-size="9" font-weight="700" fill="#312e81">Tasks (Wide 7-col)</text>
+            <rect x="257" y="122" width="108" height="38" rx="5" fill="#ffffff" stroke="#4338ca" />
+            <text x="311" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#312e81">Quick Capture</text>
+            <rect x="373" y="70" width="70" height="90" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="408" y="104" text-anchor="middle" font-size="8.5" fill="#334155">Side 5-col:</text>
+            <text x="408" y="118" text-anchor="middle" font-size="8.5" fill="#334155">Habits</text>
+            <text x="408" y="132" text-anchor="middle" font-size="8.5" fill="#334155">Events</text>
+            <text x="408" y="146" text-anchor="middle" font-size="8.5" fill="#334155">Goals</text>
+
+            <!-- Holistic Overview -->
+            <rect x="476" y="10" width="214" height="165" rx="10" fill="#f8fafc" stroke="#047857" stroke-width="1.5" />
+            <text x="583" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="#047857">Holistic Overview</text>
+            <rect x="490" y="40" width="186" height="22" rx="5" fill="#d1fae5" stroke="#047857" />
+            <text x="583" y="55" text-anchor="middle" font-size="9.5" font-weight="600" fill="#064e3b">Daily Progress Card</text>
+            <rect x="490" y="70" width="88" height="42" rx="5" fill="#ffffff" stroke="#047857" />
+            <text x="534" y="95" text-anchor="middle" font-size="9" font-weight="700" fill="#064e3b">Habits Spotlight</text>
+            <rect x="588" y="70" width="88" height="42" rx="5" fill="#ffffff" stroke="#047857" />
+            <text x="632" y="95" text-anchor="middle" font-size="9" font-weight="700" fill="#064e3b">Goals Spotlight</text>
+            <rect x="490" y="120" width="58" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="519" y="143" text-anchor="middle" font-size="8.5" fill="#334155">Events</text>
+            <rect x="554" y="120" width="58" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="583" y="143" text-anchor="middle" font-size="8.5" fill="#334155">Tasks</text>
+            <rect x="618" y="120" width="58" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" />
+            <text x="647" y="143" text-anchor="middle" font-size="8.5" fill="#334155">Capture</text>
+          </svg>
+          <div class="diagram-caption">Figure 2.1 — Visual Structural Comparison of the 3 Dashboard Layout Presets</div>
+        </div>
+
+        <h2>2.3 Customizing Dashboard Widgets</h2>
+        <ol class="steps-list">
+          <li>Click the <span class="ui-pill">Widgets</span> button in the top navigation bar (visible while on the Dashboard).</li>
+          <li>In <strong>Customize Dashboard Widgets</strong>, use the <strong>Eye</strong> icon to show/hide any widget (<em>Daily Progress &amp; Score</em>, <em>Quick Capture</em>, <em>Today's Action Items</em>, <em>Habit Matrix</em>, <em>Upcoming Events &amp; Deadlines</em>, <em>Strategic Goals Overview</em>).</li>
+          <li>Use the <strong>Up / Down</strong> arrows to reorder widgets, or click <strong>Reset to Default</strong> to restore the original order, then click <span class="ui-btn">Done</span>.</li>
+        </ol>
+
+        <div class="screenshot-placeholder">
+          <div class="screenshot-header">
+            <span class="screenshot-title">Screenshot Placeholder — Main Dashboard (Balanced Hub)</span>
+            <span class="screenshot-badge">View: Dashboard</span>
+          </div>
+          <p class="screenshot-notes">
+            Capture desktop view showing Top Navbar (Search <kbd>Ctrl+K</kbd>, Widgets, Quick Capture, Theme toggle), Greeting Header, Daily Progress ring, and the 2-column widget grid.
+          </p>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 2 · Getting Started &amp; Dashboard</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 3 ==================== -->
+      <section class="page-sheet" id="ch3">
+        <span class="chapter-tag">Chapter 3</span>
+        <h1 class="chapter-title">Managing Tasks and Subtasks</h1>
+        <p class="chapter-lead">
+          The Tasks workspace supports full task lifecycles: priorities, multi-state workflow status, nested subtasks, tags, filtering, sorting, and linked calendar time blocks.
+        </p>
+
+        <h2>3.1 Creating or Editing a Task</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Tasks</strong> from the sidebar and click <span class="ui-btn">+ New Task</span> (or click the pencil icon on an existing task card to edit).</li>
+          <li>Enter a required <strong>Task Title</strong> and optional <strong>Description</strong>.</li>
+          <li>Choose a <strong>Category</strong> (e.g., <em>Work &amp; Career</em>, <em>Personal</em>, <em>Education &amp; Study</em>, <em>Operations &amp; Farm</em>, <em>Household &amp; Family</em>, <em>Health &amp; Wellness</em>, <em>Finance &amp; Invoicing</em>, or a custom label).</li>
+          <li>Set <strong>Priority</strong> (<span class="ui-pill">Low</span>, <span class="ui-pill">Medium</span>, <span class="ui-pill">High</span>, or <span class="ui-pill">Urgent</span>) and <strong>Status</strong> (<span class="ui-pill">Not Started</span>, <span class="ui-pill">In Progress</span>, or <span class="ui-pill">Completed</span>).</li>
+          <li>Assign optional <strong>Start Date</strong>, <strong>Due Date</strong>, and <strong>Due Time</strong>, add keyword <strong>Tags</strong>, and add any checklist <strong>Subtasks</strong>. Click <span class="ui-btn">Save Task</span>.</li>
+        </ol>
+
+        <h2>3.2 Subtasks, Filters, and Sorting</h2>
+        <div class="grid-2">
+          <div class="box">
+            <div class="box-title">View Filter Tabs</div>
+            <ul style="margin:0;">
+              <li><strong>All</strong> — Every task in your system.</li>
+              <li><strong>Today</strong> — Tasks due today.</li>
+              <li><strong>Upcoming</strong> — Tasks scheduled for future dates.</li>
+              <li><strong>Overdue</strong> — Uncompleted tasks whose due date has passed.</li>
+              <li><strong>Completed</strong> — Finished tasks.</li>
+            </ul>
+          </div>
+          <div class="box">
+            <div class="box-title">Search, Dropdown Filters &amp; Sort</div>
+            <ul style="margin:0;">
+              <li>Search by title, description, or tag keyword.</li>
+              <li>Filter by <strong>Category</strong>, <strong>Priority</strong>, or <strong>Status</strong>.</li>
+              <li>Sort by Due Date (Asc/Desc), Priority (High→Low / Low→High), or Created Date (Newest/Oldest).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <strong class="callout-head">Automatic Calendar Block Synchronization</strong>
+          When a task is scheduled as a calendar focus block (via Calendar Smart Scheduling), updating its title, due date, or due time automatically updates the linked calendar block—and marking the task complete removes the scheduled block cleanly.
+        </div>
+
+        <div class="screenshot-placeholder">
+          <div class="screenshot-header">
+            <span class="screenshot-title">Screenshot Placeholder — Tasks Board &amp; Task Detail Modal</span>
+            <span class="screenshot-badge">View: Tasks</span>
+          </div>
+          <p class="screenshot-notes">
+            Capture the Tasks header banner, filter tabs (All/Today/Upcoming/Overdue/Completed), and an expanded task card showing priority badge, subtasks progress, and the Plan B / Edit / Delete icons.
+          </p>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 3 · Tasks &amp; Subtasks</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 4 ==================== -->
+      <section class="page-sheet" id="ch4">
+        <span class="chapter-tag">Chapter 4</span>
+        <h1 class="chapter-title">Calendar, Events and Reminders</h1>
+        <p class="chapter-lead">
+          Manage single events, recurring series, task deadlines, conflict detection, and in-app reminder alerts across four calendar perspectives.
+        </p>
+
+        <h2>4.1 Calendar Views &amp; Filters</h2>
+        <div class="grid-2">
+          <div class="box">
+            <div class="box-title">4 Time Views</div>
+            <p style="margin:0; font-size:12.5px;">Switch seamlessly between <span class="ui-pill">Daily</span>, <span class="ui-pill">Weekly</span>, <span class="ui-pill">Monthly</span>, and <span class="ui-pill">Yearly</span> views, and use <strong>Prev / Today / Next</strong> to navigate dates.</p>
+          </div>
+          <div class="box">
+            <div class="box-title">Search &amp; Type Filters</div>
+            <p style="margin:0; font-size:12.5px;">Filter by <span class="ui-pill">All</span>, <span class="ui-pill">Events Only</span>, or <span class="ui-pill">Tasks Only</span>, plus category chips (Work, Personal, Study, Business, Family, Health, Other) and keyword search.</p>
+          </div>
+        </div>
+
+        <h2>4.2 Creating &amp; Editing Recurring Events</h2>
+        <ol class="steps-list">
+          <li>Click <span class="ui-btn">+ New Event</span> (or click an open time slot / day cell) to open the <strong>Event Modal</strong>.</li>
+          <li>Fill in Title, Date, Start/End Time, Category, optional Location, Notes, and Role Tag.</li>
+          <li>Select a <strong>Reminder</strong> offset (<em>At time of event</em>, <em>5m</em>, <em>15m</em>, <em>30m</em>, <em>1h</em>, or <em>1 day before</em>) to trigger in-app reminder alerts inside Calendar.</li>
+          <li>Choose a <strong>Recurrence</strong> rule (<em>Does not repeat</em>, <em>Daily</em>, <em>Weekly</em>, <em>Monthly</em>, or <em>Yearly</em>) with an optional end date.</li>
+          <li>When editing or deleting a recurring event, LifePilot asks you to choose scope: <strong>This event only</strong> (creates a single-date exception/exclusion), <strong>This and following events</strong> (splits the series cleanly), or <strong>All events in series</strong>.</li>
+        </ol>
+
+        <h2>4.3 Smart Scheduling Panel (Inside Calendar)</h2>
+        <p>Click <span class="ui-pill">Smart Scheduling</span> in the Calendar toolbar to open the assistant drawer for the selected day:</p>
+        <ul>
+          <li>Highlights any same-day <strong>overlapping calendar event conflicts</strong>.</li>
+          <li>Lists available daytime <strong>Free Time Slots</strong> (08:00–18:00, minimum 30 minutes).</li>
+          <li>Suggests tailored focus blocks for uncompleted high-priority/today/overdue tasks; clicking <strong>Schedule</strong> creates or updates a linked <code>Task: &lt;Title&gt;</code> block on your calendar.</li>
+        </ul>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 4 · Calendar, Events &amp; Reminders</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 5 ==================== -->
+      <section class="page-sheet" id="ch5">
+        <span class="chapter-tag">Chapter 5</span>
+        <h1 class="chapter-title">Habits and Daily Tracking</h1>
+        <p class="chapter-lead">
+          Build consistent routines with daily check-ins, live streak counters, and a visual 7-day consistency grid.
+        </p>
+
+        <h2>5.1 Daily Habit Workflow</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Habits</strong> from the sidebar to view today's completion summary, <strong>Longest Active Streak</strong>, and the <strong>7-Day Consistency Grid</strong> (Mon–Sun).</li>
+          <li>Click <span class="ui-btn">+ New Habit</span> to create a habit with a Title, Role/Category Tag (e.g., <em>Health</em>, <em>Work</em>, <em>Study</em>, <em>Routine</em>), and optional Description.</li>
+          <li>Click <strong>Check In</strong> on a habit card to mark today complete. Your streak increments by 1 and today's box in the 7-day grid turns emerald green (clicking again toggles it back cleanly).</li>
+          <li>Use the <strong>Edit</strong> (pencil) button to update title, tag, or description without resetting your streak or 7-day history, or <strong>Delete</strong> (trash icon) to move the habit to the Recycle Bin after confirmation.</li>
+        </ol>
+
+        <div class="callout callout-tip">
+          <strong class="callout-head">Dashboard Sync</strong>
+          Habits you check off in the Dashboard's <strong>Habit Matrix</strong> widget immediately synchronize with the Habits view and contribute to your daily Analytics &amp; Focus Score.
+        </div>
+
+        <div class="screenshot-placeholder">
+          <div class="screenshot-header">
+            <span class="screenshot-title">Screenshot Placeholder — Habits 7-Day Consistency Grid</span>
+            <span class="screenshot-badge">View: Habits</span>
+          </div>
+          <p class="screenshot-notes">
+            Capture the Habits summary strip (Completed Today, Longest Active Streak, System Identity) and habit cards showing the Mon–Sun checkmark matrix, Edit, Delete, and Check In buttons.
+          </p>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 5 · Habits &amp; Daily Tracking</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 6 ==================== -->
+      <section class="page-sheet" id="ch6">
+        <span class="chapter-tag">Chapter 6</span>
+        <h1 class="chapter-title">Goals and Progress</h1>
+        <p class="chapter-lead">
+          Track medium- and long-term milestones across personal, academic, agricultural, or business domains with interactive progress sliders and safe editing.
+        </p>
+
+        <h2>6.1 Creating, Updating &amp; Deleting Goals</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Goals</strong> from the sidebar to see Active Targets, Average Completion percentage, and your goal cards.</li>
+          <li>Click <span class="ui-btn">+ New Goal</span>, fill in <strong>Goal Title</strong>, <strong>Category</strong>, <strong>Target Date</strong> (e.g., <em>Dec 31</em>, <em>End of Q4</em>), and <strong>Role Tag</strong>, then click <span class="ui-btn">Save Milestone</span>.</li>
+          <li>Drag the <strong>Progress Slider</strong> (0% to 100%) on any goal card to update completion in real time; changes persist immediately to <code>localStorage</code>.</li>
+          <li>Click the visible <strong>Edit</strong> (pencil) button on a goal card (or click the card itself) to open the <strong>Edit Strategic Goal</strong> modal. Updating title, category, target date, or role tag preserves the goal's original ID and current progress.</li>
+          <li>Click the <strong>Delete</strong> (trash) icon to open the confirmation modal. Choosing <strong>Cancel</strong> preserves the goal unchanged; confirming moves it to the Recycle Bin.</li>
+        </ol>
+
+        <div class="callout callout-info">
+          <strong class="callout-head">Cross-Module Visibility</strong>
+          Your top active goals also appear in the Dashboard's <strong>Strategic Goals Overview</strong> widget and in the <strong>Weekly Life Review</strong> snapshot (highlighting goals at 80%+ completion).
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 6 · Goals &amp; Progress</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 7 ==================== -->
+      <section class="page-sheet" id="ch7">
+        <span class="chapter-tag">Chapter 7</span>
+        <h1 class="chapter-title">Focus Center and Focus Sounds</h1>
+        <p class="chapter-lead">
+          Run distraction-free deep work timers with persistent objectives, custom durations, sprint logging, and offline Web Audio ambient soundscapes.
+        </p>
+
+        <h2>7.1 Pomodoro Timer &amp; Current Focus Objective</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Focus Center</strong> and select a mode: <strong>Focus Block</strong> (default 25 min), <strong>Short Break</strong> (default 5 min), or <strong>Long Break</strong> (default 15 min).</li>
+          <li>Type what you are working on in the <strong>Current Focus Objective</strong> input and click <span class="ui-btn">Save</span> (or <span class="ui-btn">Update</span>, or press <kbd>Enter</kbd>). The active objective displays below the timer and persists across page refreshes. Click <span class="ui-pill">Clear</span> or the <strong>×</strong> icon to clear it cleanly.</li>
+          <li>Click <span class="ui-btn">Start Focus</span> to begin the SVG ring countdown. Completing a Focus Block automatically increments your <strong>Sprints Logged Today</strong> counter (stored by date in <code>lifepilot_focus_session_log</code>).</li>
+          <li>Under <strong>Custom Timer Durations</strong>, set any whole number between <strong>1 and 180 minutes</strong> for each mode and click <span class="ui-btn">Apply Durations</span> (or <strong>Restore Defaults</strong> for 25m / 5m / 15m).</li>
+        </ol>
+
+        <h2>7.2 Offline Focus Sounds (Web Audio API)</h2>
+        <p>The <strong>Focus Sounds &amp; Offline Ambience</strong> panel synthesizes soundscapes locally in your browser without streaming audio files or auto-playing on page load.</p>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Preset Name</th>
+              <th>Synthesis Character</th>
+              <th>Recommended Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Calm Piano</strong></td>
+              <td>Warm synthesized harmonic chords &amp; gentle arpeggios with low-pass warmth.</td>
+              <td>Planning, writing, light study.</td>
+            </tr>
+            <tr>
+              <td><strong>Serene Instrumental</strong></td>
+              <td>Soft felt-piano melody layered with warm strings pad &amp; gentle vibrato flute voice.</td>
+              <td>Reading, deep study, sustained calm focus.</td>
+            </tr>
+            <tr>
+              <td><strong>Rain Sounds</strong></td>
+              <td>Layered pink-noise rainfall with subtle LFO breathing modulation.</td>
+              <td>Blocking background chatter.</td>
+            </tr>
+            <tr>
+              <td><strong>Nature Breeze</strong></td>
+              <td>Soft filtered wind through leaves with occasional harmonic chimes.</td>
+              <td>Creative work and reflection.</td>
+            </tr>
+            <tr>
+              <td><strong>Soft Ambient Noise</strong></td>
+              <td>Smooth low-passed brown-noise bed.</td>
+              <td>Intense concentration sprints.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:12.5px;">Controls include <strong>Play Sound</strong>, <strong>Pause Sound</strong>, <strong>Resume Sound</strong>, <strong>Stop</strong>, <strong>Mute / Unmute</strong>, and a <strong>0–100% Volume</strong> slider. Your selected preset, volume, and mute state persist in <code>localStorage</code>.</p>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 7 · Focus Center &amp; Focus Sounds</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 8 ==================== -->
+      <section class="page-sheet" id="ch8">
+        <span class="chapter-tag">Chapter 8</span>
+        <h1 class="chapter-title">Energy Planner</h1>
+        <p class="chapter-lead">
+          Match what you tackle right now to your actual mental and physical energy without modifying your task deadlines.
+        </p>
+
+        <h2>8.1 How Energy-Aware Matching Works</h2>
+        <p>The Energy Planner uses a deterministic local scoring heuristic (<code>src/utils/energyPlanner.ts</code>) across all uncompleted tasks:</p>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Energy Level</th>
+              <th>Effort Tier Prioritized</th>
+              <th>Scoring Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Low Energy</strong> (Drained / Light focus)</td>
+              <td>Light Effort (~15–30 min)</td>
+              <td>Favors quick, single-step tasks with low priority friction and short titles/subtask counts; penalizes deep-focus tasks.</td>
+            </tr>
+            <tr>
+              <td><strong>Medium Energy</strong> (Steady / Balanced)</td>
+              <td>Moderate Effort (~30–45 min)</td>
+              <td>Balances in-progress tasks, today/overdue obligations, and sustainable steady progress.</td>
+            </tr>
+            <tr>
+              <td><strong>High Energy</strong> (Peak / Deep work)</td>
+              <td>Deep Focus (~45–60 min)</td>
+              <td>Surfaces urgent, high-priority, and multi-subtask deliverables that benefit most from peak concentration.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="diagram-frame">
+          <svg viewBox="0 0 700 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Energy Planner Pipeline">
+            <rect x="12" y="20" width="146" height="68" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.5" />
+            <text x="85" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">1. Pick Energy</text>
+            <text x="85" y="65" text-anchor="middle" font-size="9.5" fill="#78350f">Low / Medium / High</text>
+
+            <line x1="158" y1="54" x2="195" y2="54" stroke="#64748b" stroke-width="2" />
+            <polygon points="195,49 204,54 195,59" fill="#64748b" />
+
+            <rect x="206" y="20" width="166" height="68" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" />
+            <text x="289" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">2. Local Heuristic</text>
+            <text x="289" y="65" text-anchor="middle" font-size="9.5" fill="#334155">Priority + Subtasks + Due</text>
+
+            <line x1="372" y1="54" x2="409" y2="54" stroke="#64748b" stroke-width="2" />
+            <polygon points="409,49 418,54 409,59" fill="#64748b" />
+
+            <rect x="420" y="20" width="268" height="68" rx="9" fill="#eef2ff" stroke="#4338ca" stroke-width="1.5" />
+            <text x="554" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">3. Top 6 Ranked Matches + Actions</text>
+            <text x="554" y="65" text-anchor="middle" font-size="9.5" fill="#334155">Mark Done · Open Plan B · Open Task</text>
+          </svg>
+          <div class="diagram-caption">Figure 8.1 — Energy-Aware Smart Planner Recommendation Flow</div>
+        </div>
+
+        <ol class="steps-list">
+          <li>Open <strong>Energy Planner</strong> and select <strong>Low Energy</strong>, <strong>Medium Energy</strong>, or <strong>High Energy</strong> (persisted in <code>lifepilot_energy_level</code>).</li>
+          <li>Review the top 6 matches, each showing effort tier, estimated minutes, due date, and exact reasons why it was matched.</li>
+          <li>Click <strong>Refresh Recommendations</strong> to cycle tied items, or take direct action: <strong>Mark Done</strong>, <strong>Plan B</strong>, or <strong>Open Task</strong>.</li>
+        </ol>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 8 · Energy Planner</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 9 ==================== -->
+      <section class="page-sheet" id="ch9">
+        <span class="chapter-tag">Chapter 9</span>
+        <h1 class="chapter-title">Weekly Life Review</h1>
+        <p class="chapter-lead">
+          Reflect on Monday–Sunday execution using real local task completions, habit consistency, goal progress, and focus sprint logs.
+        </p>
+
+        <h2>9.1 Navigating Weeks &amp; Metrics</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Weekly Review</strong> from the sidebar. Use the <strong>&lt;</strong> and <strong>&gt;</strong> arrows next to the date range (or <strong>This Week</strong>) to inspect past, current, or upcoming weeks.</li>
+          <li>Review the <strong>4 Summary Cards</strong>: Tasks Completed (completed vs. pending due in that week), Habit Consistency, Active Goals average, and Focus Sessions completed.</li>
+          <li>Inspect the <strong>Weekly Completion Trend (Mon–Sun)</strong> bar chart. Tap or click any day bar to open the interactive day breakdown showing completed tasks, pending due tasks, and focus sprints for that exact date.</li>
+          <li>Review <strong>Role Distribution</strong>, <strong>Positive Achievements</strong>, <strong>Areas Needing Attention</strong> (overdue/backlog alerts with a direct <em>Review Tasks</em> link), and the <strong>Active Goals Snapshot</strong>.</li>
+        </ol>
+
+        <div class="callout callout-info">
+          <strong class="callout-head">Honest Future-Date Handling</strong>
+          Future days inside the current week (or upcoming weeks) are explicitly excluded from completion percentages and marked with <code>—</code> so incomplete future days never artificially lower your weekly score.
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 9 · Weekly Life Review</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 10 ==================== -->
+      <section class="page-sheet" id="ch10">
+        <span class="chapter-tag">Chapter 10</span>
+        <h1 class="chapter-title">Smart Plan B</h1>
+        <p class="chapter-lead">
+          When a task clashes with calendar meetings, sits overdue, or lands on an overloaded day, Smart Plan B finds realistic conflict-free slots and lets you preview before rescheduling.
+        </p>
+
+        <h2>10.1 How Smart Plan B Works</h2>
+        <div class="diagram-frame">
+          <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Plan B Conflict Detection and Rescheduling Flow">
+            <rect x="10" y="20" width="150" height="86" rx="9" fill="#fff1f2" stroke="#be123c" stroke-width="1.5" />
+            <text x="85" y="45" text-anchor="middle" font-size="10.5" font-weight="700" fill="#881337">Detect Issues</text>
+            <text x="85" y="63" text-anchor="middle" font-size="9.5" fill="#475569">• Overdue date</text>
+            <text x="85" y="77" text-anchor="middle" font-size="9.5" fill="#475569">• Event / Recurring clash</text>
+            <text x="85" y="91" text-anchor="middle" font-size="9.5" fill="#475569">• Day overload / Off-hour</text>
+
+            <line x1="160" y1="63" x2="195" y2="63" stroke="#64748b" stroke-width="2" />
+            <polygon points="195,58 204,63 195,68" fill="#64748b" />
+
+            <rect x="206" y="20" width="160" height="86" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" />
+            <text x="286" y="45" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f766e">Scan 08:00–19:00</text>
+            <text x="286" y="63" text-anchor="middle" font-size="9.5" fill="#475569">Excludes self-linked block</text>
+            <text x="286" y="77" text-anchor="middle" font-size="9.5" fill="#475569">Checks events + other tasks</text>
+            <text x="286" y="91" text-anchor="middle" font-size="9.5" fill="#475569">Finds up to 4 open slots</text>
+
+            <line x1="366" y1="63" x2="401" y2="63" stroke="#64748b" stroke-width="2" />
+            <polygon points="401,58 410,63 401,68" fill="#64748b" />
+
+            <rect x="412" y="20" width="136" height="86" rx="9" fill="#eef2ff" stroke="#4338ca" stroke-width="1.5" />
+            <text x="480" y="48" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4338ca">Before vs. After</text>
+            <text x="480" y="68" text-anchor="middle" font-size="9.5" fill="#475569">User inspects old &amp;</text>
+            <text x="480" y="83" text-anchor="middle" font-size="9.5" fill="#475569">proposed schedule</text>
+
+            <line x1="548" y1="63" x2="578" y2="63" stroke="#64748b" stroke-width="2" />
+            <polygon points="578,58 587,63 578,68" fill="#64748b" />
+
+            <rect x="589" y="20" width="102" height="86" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.5" />
+            <text x="640" y="52" text-anchor="middle" font-size="10.5" font-weight="700" fill="#047857">Apply Plan B</text>
+            <text x="640" y="70" text-anchor="middle" font-size="9" fill="#334155">Updates date/time</text>
+            <text x="640" y="84" text-anchor="middle" font-size="9" fill="#334155">Keeps all subtasks</text>
+          </svg>
+          <div class="diagram-caption">Figure 10.1 — Smart Plan B Deterministic Conflict Analysis &amp; Confirmation Workflow</div>
+        </div>
+
+        <ol class="steps-list">
+          <li>Click the <strong>Plan B</strong> (calendar-clock) icon on any uncompleted task in <strong>Tasks</strong>, <strong>Task Details</strong>, or <strong>Energy Planner</strong>.</li>
+          <li>Review the <strong>Diagnosis Box</strong> explaining detected conflicts (including recurring events, overdue dates, or heavy same-day workload).</li>
+          <li>Select one of the <strong>Suggested Conflict-Free Slots</strong> and verify the <strong>Before vs. After Preview</strong>.</li>
+          <li>Click <span class="ui-btn">Apply Plan B</span> to update the task's due date &amp; time (and sync any linked calendar block). Your task ID, subtasks, priority, category, and description remain untouched.</li>
+        </ol>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 10 · Smart Plan B</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 11 ==================== -->
+      <section class="page-sheet" id="ch11">
+        <span class="chapter-tag">Chapter 11</span>
+        <h1 class="chapter-title">Analytics and Reports</h1>
+        <p class="chapter-lead">
+          Monitor live productivity metrics, 7-day execution rhythm, and role distribution derived strictly from your stored tasks, habits, and quick captures.
+        </p>
+
+        <h2>11.1 Summary Cards &amp; Calculations</h2>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Metric Card</th>
+              <th>Exact Data Source &amp; Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Today's Focus Score</strong></td>
+              <td><code>(Completed Today's Tasks + Completed Today's Habits) ÷ (Total Today's Tasks + Total Habits) × 100%</code>. Matches the Dashboard progress ring.</td>
+            </tr>
+            <tr>
+              <td><strong>Habit Consistency</strong></td>
+              <td>Percentage of habits checked in today (<code>completedHabitsToday ÷ totalHabitsToday</code>).</td>
+            </tr>
+            <tr>
+              <td><strong>Inbox Processing</strong></td>
+              <td>Percentage of Quick Captures marked as processed (<code>processedCaptures ÷ totalCaptures</code>).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>11.2 Interactive Weekly Rhythm &amp; Role Breakdown</h2>
+        <ul>
+          <li><strong>7-Day Execution Rhythm:</strong> Displays real task + habit completion rates per day (Monday–Sunday). Click any day column to inspect that day's task and habit counts; future days remain uncounted.</li>
+          <li><strong>Life Role &amp; Category Distribution:</strong> Uses largest-remainder rounding so integer role percentages always sum cleanly to 100% when items exist. Click any role row to inspect its task and habit breakdown.</li>
+        </ul>
+
+        <div class="screenshot-placeholder">
+          <div class="screenshot-header">
+            <span class="screenshot-title">Screenshot Placeholder — Analytics Summary Cards &amp; Charts</span>
+            <span class="screenshot-badge">View: Analytics</span>
+          </div>
+          <p class="screenshot-notes">
+            Capture the 3 summary cards (Focus Score, Habit Consistency, Inbox Processing), the 7-Day Execution Rhythm bars, and the Role Distribution panel.
+          </p>
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 11 · Analytics &amp; Reports</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 12 ==================== -->
+      <section class="page-sheet" id="ch12">
+        <span class="chapter-tag">Chapter 12</span>
+        <h1 class="chapter-title">AI Assistant and Global Search</h1>
+        <p class="chapter-lead">
+          Use the offline Local Assistant to parse plain-English instructions into tasks/events/reminders, compose daily agendas, and resolve role conflicts—or press <kbd>Ctrl+K</kbd> / <kbd>⌘K</kbd> to search everywhere at once.
+        </p>
+
+        <h2>12.1 How the LifePilot Local Assistant Works</h2>
+        <div class="callout callout-warn">
+          <strong class="callout-head">Important Technical Disclosure</strong>
+          The LifePilot Local Assistant does <strong>not</strong> connect to external cloud LLM APIs or run a generative neural language model. It runs a <strong>local deterministic NLP &amp; scheduling heuristics engine</strong> (<code>localNlpParser.ts</code>, <code>agendaComposer.ts</code>, <code>conflictResolver.ts</code>) 100% inside your browser.
+        </div>
+
+        <ol class="steps-list">
+          <li>Open <strong>AI Assistant</strong> from the sidebar.</li>
+          <li>Type a plain-English command such as <em>"Irrigate west field tomorrow at 6 AM."</em>, <em>"Study mathematics for one hour tomorrow."</em>, or <em>"Remind me to submit my assignment on Friday."</em> (or click a suggested prompt chip).</li>
+          <li>The assistant displays a <strong>Review Before Saving</strong> preview card where you can edit the detected intent (Task / Calendar Event / Reminder), Title, Date, Time, Role Tag, and Priority, and checks for duplicate records.</li>
+          <li>Click <strong>Confirm &amp; Save</strong> (or <strong>Discard</strong>) so nothing is ever saved without your approval.</li>
+          <li>Use <span class="ui-pill">Compose Daily Agenda</span> to build Morning/Afternoon/Evening time blocks from your real tasks/habits/events (and optionally save blocks to Calendar), or <span class="ui-pill">Resolve Role Conflicts</span> to detect and fix clashing events/deadlines across roles.</li>
+        </ol>
+
+        <h2>12.2 Global Search (<kbd>Ctrl+K</kbd> / <kbd>⌘K</kbd>)</h2>
+        <ul>
+          <li>Click the <strong>Search...</strong> bar in the top Navbar or press <kbd>Ctrl+K</kbd> (Windows/Linux) or <kbd>⌘K</kbd> (macOS) from anywhere in LifePilot.</li>
+          <li>Searches live state across <strong>Tasks</strong>, <strong>Calendar Events</strong>, <strong>Reminders</strong>, <strong>Habits</strong>, <strong>Goals</strong>, <strong>Notes</strong>, <strong>Quick Captures</strong>, and <strong>Pages &amp; Views</strong>.</li>
+          <li>Use <kbd>↑</kbd> / <kbd>↓</kbd> and <kbd>Enter</kbd> (or click a result) to jump straight to that view and highlight or open the exact item.</li>
+        </ul>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 12 · AI Assistant &amp; Global Search</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 13 ==================== -->
+      <section class="page-sheet" id="ch13">
+        <span class="chapter-tag">Chapter 13</span>
+        <h1 class="chapter-title">Quick Capture and Notes</h1>
+        <p class="chapter-lead">
+          Capture fleeting thoughts in seconds without cluttering your task board, and maintain structured long-form reference notes in your Notes Library.
+        </p>
+
+        <h2>13.1 Quick Captures vs. Actual Tasks (Important Distinction)</h2>
+        <div class="diagram-frame">
+          <svg viewBox="0 0 700 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quick Capture vs Tasks Workflow">
+            <rect x="14" y="20" width="215" height="72" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.5" />
+            <text x="121" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">Quick Capture Inbox</text>
+            <text x="121" y="63" text-anchor="middle" font-size="9.5" fill="#475569">Stored in lifepilot_quick_captures</text>
+            <text x="121" y="79" text-anchor="middle" font-size="9.5" fill="#475569">Types: Task, Idea, Note, Reminder</text>
+
+            <line x1="229" y1="56" x2="294" y2="56" stroke="#0d9488" stroke-width="2" />
+            <polygon points="294,51 304,56 294,61" fill="#0d9488" />
+            <text x="266" y="46" text-anchor="middle" font-size="9" font-weight="700" fill="#0f766e">Promote (↗)</text>
+
+            <rect x="306" y="20" width="205" height="72" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.5" />
+            <text x="408" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">Actual Tasks List</text>
+            <text x="408" y="63" text-anchor="middle" font-size="9.5" fill="#475569">Stored in lifepilot_tasks</text>
+            <text x="408" y="79" text-anchor="middle" font-size="9.5" fill="#475569">Full Priority, Subtasks, Plan B</text>
+
+            <rect x="532" y="20" width="154" height="72" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.5" />
+            <text x="609" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">Original Capture</text>
+            <text x="609" y="63" text-anchor="middle" font-size="9.5" fill="#475569">Marked promoted &amp; done</text>
+            <text x="609" y="79" text-anchor="middle" font-size="9.5" fill="#475569">(Duplicate-protected)</text>
+          </svg>
+          <div class="diagram-caption">Figure 13.1 — Separation Between Quick Captures Inbox and the Tasks Module</div>
+        </div>
+
+        <ul>
+          <li><strong>Capturing:</strong> Open the <strong>Quick Capture</strong> modal from the top Navbar button (or the Dashboard widget), pick a tag (<em>Task</em>, <em>Idea</em>, <em>Note</em>, <em>Reminder</em>), type your thought, and press <kbd>Ctrl+Enter</kbd> / <kbd>⌘+Enter</kbd> or <span class="ui-btn">Capture</span>.</li>
+          <li><strong>Why They Are Separate:</strong> Capturing an item keeps it in your Quick Captures inbox so your structured Tasks list stays clean. Only when you click the <strong>Promote to Today's Tasks (↗)</strong> icon does LifePilot convert it into a real Task with duplicate protection.</li>
+        </ul>
+
+        <h2>13.2 Notes &amp; Reference Library</h2>
+        <ol class="steps-list">
+          <li>Open <strong>Notes</strong> and click <span class="ui-btn">+ New Note</span> to create a note with a required <strong>Title</strong>, <strong>Category</strong>, and <strong>Content</strong>.</li>
+          <li>Click any note card to open the <strong>Note Detail Modal</strong>, or click the pencil icon to edit Title, Category, or Content without creating duplicates (original ID and creation date are preserved, and an updated timestamp is shown).</li>
+          <li>Filter notes by category chips or search by keyword across title, content, and category. Deleting a note always asks for confirmation before moving it to the Recycle Bin.</li>
+        </ol>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 13 · Quick Capture &amp; Notes</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 14 ==================== -->
+      <section class="page-sheet" id="ch14">
+        <span class="chapter-tag">Chapter 14</span>
+        <h1 class="chapter-title">Recycle Bin</h1>
+        <p class="chapter-lead">
+          Every deletion across LifePilot uses a unified soft-delete Recycle Bin with confirmation dialogs, allowing safe restoration or deliberate permanent removal.
+        </p>
+
+        <h2>14.1 Supported Entity Recovery</h2>
+        <p>The Recycle Bin stores deleted <strong>Tasks</strong> (along with any linked calendar blocks), <strong>Calendar Events</strong> (including individual recurring occurrence exclusions or split series), <strong>Reminders</strong>, <strong>Habits</strong>, <strong>Goals</strong>, <strong>Notes</strong>, and <strong>Quick Captures</strong>.</p>
+
+        <ol class="steps-list">
+          <li>When you delete an item anywhere in LifePilot, a confirmation modal warns you that it will move to Recently Deleted, and a toast notification offers a direct <strong>Recycle Bin</strong> shortcut.</li>
+          <li>Open <strong>Recycle Bin</strong> from the sidebar to filter deleted items by type or search by title, category, role, or deletion source.</li>
+          <li>Click <strong>Restore</strong> on a single record to return it to its original module with its original ID, metadata, and relationships intact—or click <strong>Restore All / Restore Visible</strong> to batch-restore with conflict checks.</li>
+          <li>Click <strong>Delete Forever</strong> on an item (or <span class="ui-pill">Empty Trash</span>) and confirm in the dialog to permanently purge records from local storage.</li>
+        </ol>
+
+        <div class="callout callout-tip">
+          <strong class="callout-head">No Silent Auto-Purge</strong>
+          Items in the Recycle Bin never auto-expire. They remain safely recoverable until you explicitly restore or permanently delete them.
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 14 · Recycle Bin</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 15 ==================== -->
+      <section class="page-sheet" id="ch15">
+        <span class="chapter-tag">Chapter 15</span>
+        <h1 class="chapter-title">Settings and Personalization</h1>
+        <p class="chapter-lead">
+          Tailor LifePilot's theme, display name, active multi-role personas, custom role title, dashboard layout preset, and workspace data lifecycle from Settings.
+        </p>
+
+        <h2>15.1 Personalization Controls</h2>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Settings Section</th>
+              <th>What You Can Configure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Interface Appearance</strong></td>
+              <td>Switch between <strong>Light Mode</strong> (crisp slate) and <strong>Dark Mode</strong> (obsidian canvas), also toggleable from the Navbar Moon/Sun icon.</td>
+            </tr>
+            <tr>
+              <td><strong>User Profile &amp; Roles</strong></td>
+              <td>Edit Display Name, toggle any combination of the 10 roles (minimum 1 active), and enter a <strong>Custom Role Title</strong> when <em>Custom Role</em> is active.</td>
+            </tr>
+            <tr>
+              <td><strong>Dashboard Layout Preset</strong></td>
+              <td>Choose <strong>Balanced Hub</strong>, <strong>Focus Flow</strong>, or <strong>Holistic Overview</strong>; layout changes apply immediately on the Dashboard.</td>
+            </tr>
+            <tr>
+              <td><strong>Setup Wizard Shortcut</strong></td>
+              <td>Click <span class="ui-pill">Launch Setup Wizard</span> to re-run onboarding and optionally re-seed role sample templates.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>15.2 Destructive Operations Safety</h2>
+        <div class="callout callout-danger">
+          <strong class="callout-head">Confirmation Guards on Reset &amp; Clear</strong>
+          Both <strong>Reset to Demo Data</strong> (replaces current records with role sample data) and <strong>Clear All Data</strong> (permanently wipes all active records, Notes, and Recycle Bin items) open an explicit confirmation modal requiring you to confirm before any data is altered.
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 15 · Settings &amp; Personalization</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 16 ==================== -->
+      <section class="page-sheet" id="ch16">
+        <span class="chapter-tag">Chapter 16</span>
+        <h1 class="chapter-title">Data Backup and Restore</h1>
+        <p class="chapter-lead">
+          Because LifePilot stores everything locally in your browser without a remote database, exporting regular JSON backups protects your work across browser resets or device switches.
+        </p>
+
+        <h2>16.1 Exporting a Complete Backup</h2>
+        <ol class="steps-list">
+          <li>Go to <strong>Settings → Local Storage Data Management</strong>.</li>
+          <li>Click <span class="ui-pill">Export Backup JSON</span>. LifePilot copies the backup JSON to your clipboard and downloads a timestamped file named <code>lifepilot_backup_YYYY-MM-DD.json</code>.</li>
+          <li>The export includes your Profile, Tasks, Habits, Goals, Events, Quick Captures, Notes, Recycle Bin records, Widgets, Focus Objective, Focus Durations, Focus Session Log, Energy Level, and Focus Sound Preferences.</li>
+        </ol>
+
+        <h2>16.2 Restoring from a Backup</h2>
+        <ol class="steps-list">
+          <li>Click <span class="ui-pill">Restore Backup</span> in Settings to open the JSON import box.</li>
+          <li>Paste the full contents of a previously exported LifePilot JSON backup file.</li>
+          <li>Click <span class="ui-btn">Apply Restore</span>. LifePilot validates the JSON structure before applying—if the format is invalid, your existing data is left untouched and an error message is shown.</li>
+        </ol>
+
+        <h2>16.3 Browser Storage Keys Reference</h2>
+        <p style="font-size:12.5px;">For technical documentation, LifePilot persists state across 16 keys: <code>lifepilot_profile</code>, <code>lifepilot_theme</code>, <code>lifepilot_tasks</code>, <code>lifepilot_habits</code>, <code>lifepilot_goals</code>, <code>lifepilot_events</code>, <code>lifepilot_quick_captures</code>, <code>lifepilot_widgets</code>, <code>lifepilot_notes</code>, <code>lifepilot_trash</code>, <code>lifepilot_focus_objective</code>, <code>lifepilot_focus_durations</code>, <code>lifepilot_focus_session_log</code>, <code>lifepilot_energy_level</code>, <code>lifepilot_focus_sound_prefs</code>, and <code>lifepilot_ai_chat_history</code>.</p>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 16 · Data Backup &amp; Restore</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 17 ==================== -->
+      <section class="page-sheet" id="ch17">
+        <span class="chapter-tag">Chapter 17</span>
+        <h1 class="chapter-title">PWA Installation and Offline Usage</h1>
+        <p class="chapter-lead">
+          LifePilot is configured as a Progressive Web App (PWA) for production deployments, paired with an in-app offline status banner and fallback page.
+        </p>
+
+        <h2>17.1 Production Build vs. Preview Environment</h2>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Environment</th>
+              <th>What Works</th>
+              <th>Actual Platform Limitations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Production Deployment</strong> (<code>npm run build</code> served over top-level HTTPS or <code>vite preview</code>)</td>
+              <td>Generates <code>manifest.webmanifest</code>, icons, <code>offline.html</code>, and Workbox <code>sw.js</code> (<code>autoUpdate</code>); supports standalone install and cached offline shell reloads.</td>
+              <td>Requires initial online visit so the browser caches the production bundle and registers the service worker.</td>
+            </tr>
+            <tr>
+              <td><strong>Google AI Studio Preview</strong> (Vite dev server inside embedded iframe)</td>
+              <td>Once loaded, disconnecting from the network shows the top <strong>Offline Mode</strong> banner and continues saving all changes to <code>localStorage</code>.</td>
+              <td><strong>Preview Limitation:</strong> Cross-origin iframes block standalone PWA install prompts, and service-worker caching is disabled in dev mode (<code>devOptions.enabled: false</code>) so stale dev code is never served. Full offline refresh is not supported in this preview iframe.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>17.2 Installing LifePilot in Production</h2>
+        <ol class="steps-list">
+          <li>Open your deployed production LifePilot URL directly in a top-level browser tab (Chrome, Edge, or Safari on iOS/macOS).</li>
+          <li><strong>Desktop / Android Chromium:</strong> Open <strong>Settings → Offline Readiness &amp; App Installation</strong> and click <span class="ui-btn">Install LifePilot App</span> (or use your browser's address-bar install icon).</li>
+          <li><strong>iOS Safari:</strong> Tap the browser <strong>Share</strong> button and choose <strong>Add to Home Screen</strong>.</li>
+        </ol>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 17 · PWA &amp; Offline Usage</span>
+        </div>
+      </section>
+
+      <!-- ==================== CHAPTER 18 ==================== -->
+      <section class="page-sheet" id="ch18">
+        <span class="chapter-tag">Chapter 18</span>
+        <h1 class="chapter-title">Tips, Troubleshooting and Frequently Asked Questions</h1>
+        <p class="chapter-lead">
+          Quick answers to common workflow questions and diagnostic steps if something behaves unexpectedly.
+        </p>
+
+        <h2>18.1 Productivity Tips</h2>
+        <ul>
+          <li>Press <kbd>Ctrl+K</kbd> or <kbd>⌘K</kbd> anytime to jump to any task, note, event, habit, goal, or page without touching your mouse.</li>
+          <li>Keep raw ideas in <strong>Quick Capture</strong> and promote only concrete actions to <strong>Tasks</strong> so your daily focus list stays realistic.</li>
+          <li>Pair <strong>Energy Planner</strong> with <strong>Smart Plan B</strong> on busy days: pick a task matching your energy, then move it out of calendar collisions cleanly.</li>
+          <li>Export a <code>.json</code> backup weekly before clearing browser history or switching devices.</li>
+        </ul>
+
+        <h2>18.2 Troubleshooting &amp; FAQ</h2>
+        <table class="manual-table">
+          <thead>
+            <tr>
+              <th>Question / Issue</th>
+              <th>Explanation &amp; Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Why didn't my Focus Objective update while typing?</strong></td>
+              <td>Type your objective in Focus Center and click <strong>Save</strong> / <strong>Update</strong> (or press <kbd>Enter</kbd>). An amber reminder appears whenever draft edits haven't been saved yet.</td>
+            </tr>
+            <tr>
+              <td><strong>Why don't I hear Focus Sounds immediately on page load?</strong></td>
+              <td>Browsers and LifePilot intentionally disable autoplay. Click <strong>Play Sound</strong> in Focus Center to start the Web Audio engine, and check that Mute is off and Volume &gt; 0%.</td>
+            </tr>
+            <tr>
+              <td><strong>I deleted an item by mistake—can I get it back?</strong></td>
+              <td>Yes. Open <strong>Recycle Bin</strong> from the sidebar and click <strong>Restore</strong> to bring back tasks, events, habits, goals, notes, reminders, or captures.</td>
+            </tr>
+            <tr>
+              <td><strong>Does the AI Assistant send my data to external AI servers?</strong></td>
+              <td>No. It runs a local deterministic NLP parser and heuristics inside your browser with zero external API calls.</td>
+            </tr>
+            <tr>
+              <td><strong>Why can't I install the PWA or reload offline inside AI Studio preview?</strong></td>
+              <td>The AI Studio preview runs a development server inside an embedded iframe where browsers restrict PWA installation and dev service-worker caching is disabled. Deploy or preview the production build (<code>npm run build</code>) in a top-level HTTPS tab for full PWA installation and offline shell caching.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-tip">
+          <strong class="callout-head">End of Manual — Submission Checklist</strong>
+          All 18 chapters reflect the verified LifePilot v1.0 codebase. Click <strong>Print / Save as PDF</strong> in the top bar (or press <kbd>Ctrl+P</kbd> / <kbd>⌘P</kbd>) to export this document as an A4 PDF for academic submission.
+        </div>
+
+        <div class="page-footer-bar">
+          <span>LifePilot v1.0 Visual User Manual</span>
+          <span>Chapter 18 · Tips, Troubleshooting &amp; FAQ</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
